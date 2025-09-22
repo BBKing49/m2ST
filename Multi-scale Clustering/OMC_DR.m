@@ -20,7 +20,7 @@ for v = 1:view_nums
     view_weight{v,1} = 1/(view_nums+1);
     [N,d] = size(data{v});
 
-    S{v,1} = get_inital(N,spec_dim{v},100+iter*0.1);%1000  +iter*0.035 1000DLPFC
+    S{v,1} = get_inital(N,spec_dim{v},1000+iter*0.1);%1000  +iter*0.035 1000DLPFC 100 others
     S{v,1} = S{v,1}';
 %         rand('seed',v*100);
 %     S{v,1} = rand(N,spec_dim{v});
