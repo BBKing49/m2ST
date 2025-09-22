@@ -186,7 +186,7 @@ def main(args, dataset):
             X_embedding = X_embedding.cpu().detach().numpy()
             X_embedding1 = X_embedding1.cpu().detach().numpy()
 
-            scipy.io.savemat('embedding/'+dataset+'_embded922.mat',
+            scipy.io.savemat('embedding/'+dataset+'_embded.mat',
                              {'view1': X_embedding, 'view2': X_embedding1, 'labels': cell_type_indeces})
 
 
