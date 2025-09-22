@@ -2,7 +2,7 @@ clear;
 clc;
 
 
-data_files = {'STARmap_embded'};
+data_files = {'151672_embded'};
 for data_file = data_files
 
     load(['data/' data_file{1} '.mat']);
@@ -16,7 +16,7 @@ for data_file = data_files
     view_nums = size(data,1);
     cluster_nums = max(labels);
 
-    % labels(indc,:)=[];
+    labels(indc,:)=[]; % This is used for some datasets containing outlier classes, such as DLPFC.
     best_nmi = 0;
     best_ARI = 0;
 
@@ -41,10 +41,10 @@ for data_file = data_files
                     option.Maxitems = 100;
                     for iter = 1:1
                         tic;
-                        [U,obj] = OMC_DR(data,option,iter,labels);
+                        [U,obj] = OMC_DR(data,option,iter,labels); % The random seed is set to 1000 for DLPFC, and 100 for the others.
                         time(iter) = toc;
                         pred_labels = vec2lab(U');
-                        % pred_labels(indc,:)=[];
+                        pred_labels(indc,:)=[];  % This is used for some datasets containing outlier classes, such as DLPFC.
                         
                         [result_cluster,res] = ClusteringMeasure(labels, pred_labels);
                         nmi(iter) = result_cluster(2);
@@ -83,3 +83,4 @@ for data_file = data_files
 
     
 end
+
